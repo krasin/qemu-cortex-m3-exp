@@ -7,7 +7,9 @@ set -ue
 # http://www.mentor.com/embedded-software/sourcery-tools/sourcery-codebench/editions/lite-edition/
 # Don't forget to add toolchain's /bin directory to $PATH
 
-arm-none-eabi-gcc -o fs.elf main.c -g -mcpu=cortex-m3 -mthumb -T generic-hosted.ld
+rm -rf output.txt
+
+arm-none-eabi-gcc -o fs.elf main.c -g -mcpu=cortex-m3 -mthumb -T generic-m-hosted.ld
 qemu-system-arm  -cpu cortex-m3 -nographic -monitor null -serial null -semihosting -kernel fs.elf
 
 diff output.txt golden.txt
